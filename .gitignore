@@ -1,6 +1,0 @@
-build/
-.gitignore
-*.exe
-*.o
-.vscode/
-string.cpp
