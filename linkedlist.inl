@@ -45,7 +45,8 @@ template<typename T>
 template<typename T1, typename ...T2>
 void LinkedList<T>::add(T1 first, T2 ...datas)
 {
-    this->add((T)first);
+    T first1 = first;
+    this->add((T)first1);
     return add((T)datas...);
 }
 
@@ -108,25 +109,25 @@ template<typename T>
 template<typename T1>
 void LinkedList<T>::remove(T1 data)
 {
-
-    if(*(this->data) == data)
+    T data1 = data;
+    if(*(this->data) == data1)
     {
         this->removeFirst();
         return;
     }
     if(this->next == nullptr)
     {
-        std::cout << "\"" << data << "\"" << " not found." << std::endl;
+        std::cout << "\"" << data1 << "\"" << " not found." << std::endl;
         return;
     }
-    if(*(this->next->data) == data)
+    if(*(this->next->data) == data1)
     {
         LinkedList<T> *tmp = this->next;
         this->next = this->next->next;
         delete tmp;
         return;
     }
-    this->next->remove(data);
+    this->next->remove(data1);
     return;
 }
 
