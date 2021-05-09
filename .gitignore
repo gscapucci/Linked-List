@@ -3,4 +3,3 @@ build/
 *.exe
 *.o
 .vscode/
-string.cpp
