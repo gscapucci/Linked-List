@@ -1,5 +1,2 @@
-build/
-.gitignore
-*.exe
-*.o
 .vscode/
+build/
