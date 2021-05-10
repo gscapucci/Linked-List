@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-class String :public std::string{
+class String{
 public:
     std::string str;
 
@@ -15,9 +15,24 @@ public:
     String()
         :str(nullptr){}
 
-    bool operator==(std::string other)
+    bool operator==(std::string& other)
     {
         if(this->str.compare(other))
+            return false;
+        return true;
+    }
+
+    bool operator==(const char* other)
+    {
+        std::string _str(other);
+        if(this->str.compare(_str))
+            return false;
+        return true;
+    }
+
+    bool operator==(String& other)
+    {
+        if(this->str.compare(other.str))
             return false;
         return true;
     }
