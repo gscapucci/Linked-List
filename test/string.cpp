@@ -63,7 +63,7 @@ public:
 
 std::ostream& operator<<(std::ostream& os, String self)
 {
-    os << self.str;
+    os << self.get();
     return os;
 }
 
