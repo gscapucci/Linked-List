@@ -23,6 +23,7 @@ public:
     void remove(T1);
     void print();
     void clear();
+    int getSize();
 };
 
 #include "linkedlist.inl"

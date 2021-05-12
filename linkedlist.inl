@@ -77,20 +77,26 @@ void LinkedList<T>::addAtPosition(int pos, T data)
 template<typename T>
 void LinkedList<T>::removeFirst()
 {
+    if(this->data == nullptr)
+        return;
     LinkedList<T> *tmp = this->next;
     if(this->next != nullptr)
     {
         *(this->data) = *(tmp->data);
         this->next = tmp->next;
         delete tmp;
+        this->size--;
         return;
     }
-    delete data;
+    delete this->data;
+    this->size--;
 }
 
 template<typename T>
 void LinkedList<T>::removeLast()
 {
+    if(this->data == nullptr)
+        return;
     if(this->next == nullptr)
     {
         this->removeFirst();
@@ -103,12 +109,15 @@ void LinkedList<T>::removeLast()
     LinkedList<T> *tmp = this->next;
     this->next = nullptr;
     delete tmp;
+    this->size--;
 }
 
 template<typename T>
 template<typename T1>
 void LinkedList<T>::remove(T1 data)
 {
+    if(this->data == nullptr)   
+        return;
     T data1 = data;
     if(*(this->data) == data1)
     {
@@ -125,6 +134,7 @@ void LinkedList<T>::remove(T1 data)
         LinkedList<T> *tmp = this->next;
         this->next = this->next->next;
         delete tmp;
+        this->size--;
         return;
     }
     this->next->remove(data1);
@@ -151,8 +161,19 @@ void LinkedList<T>::clear()
 {
     if(this->next != nullptr)
         this->next->clear();
-    delete data;
-    delete this->next;
-    data = nullptr;
+
+    if(this->data != nullptr)
+        delete this->data;
+
+    if(this->next != nullptr)
+        delete this->next;
+
+    this->data = nullptr;
     this->next = nullptr;
+}
+
+template<typename T>
+int LinkedList<T>::getSize()
+{
+    return this->size;
 }
