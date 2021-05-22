@@ -79,9 +79,20 @@ void LinkedList<T>::removeFirst()
 {
     if(this->data == nullptr)
         return;
-    LinkedList<T> *tmp = this->next;
+
+    LinkedList<T> *tmp, *tmp2; 
+    tmp = tmp2 = this->next;
+
     if(this->next != nullptr)
     {
+        for(int i = 0;;i++)
+        {
+            tmp2->position = i;
+            if(tmp2->next == nullptr)
+                break;
+            tmp2 = tmp2->next;
+        }
+        
         *(this->data) = *(tmp->data);
         this->next = tmp->next;
         delete tmp;
@@ -131,8 +142,18 @@ void LinkedList<T>::remove(T1 data)
     }
     if(*(this->next->data) == data1)
     {
-        LinkedList<T> *tmp = this->next;
+        LinkedList<T> *tmp, *tmp2;
+        tmp = this->next;
         this->next = this->next->next;
+        tmp2 = this->next;
+        for (int i = this->position+1;; i++)
+        {
+            tmp2->position = i;
+            if(tmp2->next == nullptr)
+                break;
+            tmp2 = tmp2->next;
+        }
+        
         delete tmp;
         this->size--;
         return;

@@ -75,6 +75,8 @@ int main()
     LinkedList<String> ll;
     ll.add("One", "Two", "Three", "Four", "Five");
     ll.print();
+    ll.reverse();
+    ll.print();
     ll.removeFirst();
     ll.print();
     ll.removeLast();
