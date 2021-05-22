@@ -23,6 +23,9 @@ public:
     void remove(T1);
     void print();
     void clear();
+    void reverse();
+    template<typename T1, typename T2>
+    void swap(T1, T2);
     int getSize();
 };
 

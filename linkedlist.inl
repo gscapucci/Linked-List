@@ -173,6 +173,60 @@ void LinkedList<T>::clear()
 }
 
 template<typename T>
+void LinkedList<T>::reverse()
+{
+    if(this->data == nullptr)
+        return;
+    
+    if(this->next == nullptr || this->next->data == nullptr)
+        return;
+
+    LinkedList<T> *tmp, *tmp2;
+    tmp = this;
+
+    for (int i = 0; i < this->size/2; i++)
+    {
+        tmp2 = this;
+
+        while (tmp2->position != this->size-1-i)
+            tmp2 = tmp2->next;
+
+        this->swap(*(tmp->data), *(tmp2->data));
+        tmp = tmp->next;
+    }
+    
+}
+
+template<typename T>
+template<typename T1, typename T2>
+void LinkedList<T>::swap(T1 data1, T2 data2)
+{
+    LinkedList<T> *aux1, *aux2, *tmp;
+    aux1 = aux2 = nullptr;
+    tmp = this;
+
+    while(aux1 == nullptr || aux2 == nullptr)
+    {
+        if(*(tmp->data) == data1)
+            aux1 = tmp;
+
+        if(*(tmp->data) == data2)
+            aux2 = tmp;
+        
+        if(tmp->next == nullptr)
+            break;
+        tmp = tmp->next;
+    }
+
+    tmp = new LinkedList(*(aux1->data));
+    *(aux1->data) = *(aux2->data);
+    *(aux2->data) = *(tmp->data);
+
+    delete tmp;
+    this->size--;
+}
+
+template<typename T>
 int LinkedList<T>::getSize()
 {
     return this->size;
